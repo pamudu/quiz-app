@@ -1,9 +1,6 @@
 package com.quiz.quizapp.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -13,12 +10,28 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
+
+    @Column
     private String category;
+
+    @Column(name = "difficulty_level")
     private String difficultyLevel;
+
+    @Column
     private String option1;
+
+    @Column
     private String option2;
+
+    @Column
     private String option3;
+
+    @Column
     private String option4;
+
+    @Column(name = "question_title")
     private String questionTitle;
+
+    @Column(name = "right_answer")
     private String rightAnswer;
 }
