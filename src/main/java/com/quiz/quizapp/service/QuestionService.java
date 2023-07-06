@@ -3,8 +3,11 @@ package com.quiz.quizapp.service;
 import com.quiz.quizapp.dao.QuestionDAO;
 import com.quiz.quizapp.entity.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -12,21 +15,41 @@ public class QuestionService {
 
     @Autowired
     QuestionDAO questionDAO;
-    public List<Question> getAllQuestions() {
-        return questionDAO.findAll();
+    public ResponseEntity<List<Question>> getAllQuestions() {
+        try {
+            return new ResponseEntity<>(questionDAO.findAll(), HttpStatus.OK);
+        }catch (Exception e){
+
+        }
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_GATEWAY);
     }
 
-    public List<Question> getQuestionsByCategory(String category) {
-        return questionDAO.findByCategory(category);
+    public ResponseEntity<List<Question>> getQuestionsByCategory(String category) {
+        try {
+            return new ResponseEntity<>(questionDAO.findByCategory(category), HttpStatus.OK);
+        }catch (Exception e){
+
+        }
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_GATEWAY);
     }
 
-    public String addQuestion(Question question) {
-        questionDAO.save(question);
-        return "Successfully saved the question";
+    public ResponseEntity<String> addQuestion(Question question) {
+        try {
+            questionDAO.save(question);
+            return new ResponseEntity<>("Success", HttpStatus.CREATED);
+        }catch (Exception e){
+
+        }
+        return new ResponseEntity<>("Success", HttpStatus.BAD_GATEWAY);
     }
 
-    public String deleteQuestion(int id) {
-        questionDAO.deleteById(id);
-        return "Successfully deleted the question";
+    public ResponseEntity<String> deleteQuestion(int id) {
+        try {
+            questionDAO.deleteById(id);
+            return new ResponseEntity<>("Successfully deleted the question", HttpStatus.OK);
+        }catch (Exception e){
+
+        }
+        return new ResponseEntity<>("Success", HttpStatus.BAD_GATEWAY);
     }
 }
