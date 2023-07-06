@@ -19,4 +19,14 @@ public class QuestionService {
     public List<Question> getQuestionsByCategory(String category) {
         return questionDAO.findByCategory(category);
     }
+
+    public String addQuestion(Question question) {
+        questionDAO.save(question);
+        return "Successfully saved the question";
+    }
+
+    public String deleteQuestion(int id) {
+        questionDAO.deleteById(id);
+        return "Successfully deleted the question";
+    }
 }

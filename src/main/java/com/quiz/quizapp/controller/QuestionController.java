@@ -3,10 +3,7 @@ package com.quiz.quizapp.controller;
 import com.quiz.quizapp.entity.Question;
 import com.quiz.quizapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +20,14 @@ public class QuestionController {
     @GetMapping("/category/{category}")
     public List<Question> questionsByCategory(@PathVariable String category){
         return questionService.getQuestionsByCategory(category);
+    }
+    @PostMapping("/add")
+    public String addQuestion(@RequestBody Question question){
+        System.out.println("hi");
+        return questionService.addQuestion(question);
+    }
+    @DeleteMapping("/delete/{id}")
+    public String deleteQuestion(@PathVariable int id){
+        return questionService.deleteQuestion(id);
     }
 }
