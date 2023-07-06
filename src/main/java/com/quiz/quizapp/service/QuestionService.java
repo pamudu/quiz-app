@@ -40,7 +40,7 @@ public class QuestionService {
         }catch (Exception e){
 
         }
-        return new ResponseEntity<>("Success", HttpStatus.BAD_GATEWAY);
+        return new ResponseEntity<>("", HttpStatus.BAD_GATEWAY);
     }
 
     public ResponseEntity<String> deleteQuestion(int id) {
@@ -50,6 +50,6 @@ public class QuestionService {
         }catch (Exception e){
 
         }
-        return new ResponseEntity<>("Success", HttpStatus.BAD_GATEWAY);
+        return new ResponseEntity<>("", HttpStatus.BAD_GATEWAY);
     }
 }
